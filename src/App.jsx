@@ -1,10 +1,16 @@
+import MainSection from "./components/MainSection";
+import NavBar from "./components/NavBar";
+import HeroSection from "./components/HeroSection";
+import Footer from "./components/Footer";
+
 function App() {
   return (
-    <>
-      <div className="flex justify-center items-center text-[5rem] bg-slate-900 h-screen  text-sky-600">
-        Welcome! Start Your Coding From Here.
-      </div>
-    </>
+    <div className="bg-[#191D26] font-[Inter] text-white flex flex-col justify-center items-center">
+      <NavBar />
+      <HeroSection />
+      <MainSection />
+      <Footer />
+    </div>
   );
 }
 
