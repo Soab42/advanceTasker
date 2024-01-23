@@ -7,7 +7,7 @@ export default function HeaderTask() {
   const [formModalShow, setFormModalShow] = useState(false);
   const [confirmModalShow, setConfirmModalShow] = useState(false);
   const { dispatch, tasks } = useTaskProvider();
-  // console.log("rendering");
+
   const handleShowModal = () => {
     setFormModalShow(false);
   };

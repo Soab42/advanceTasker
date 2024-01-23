@@ -15,7 +15,7 @@ export default function TaskForm({ onClose }) {
   const { dispatch } = useTaskProvider();
   const [formData, setFormData] = useState(update.data ?? defaultState);
   const [error, setError] = useState(null);
-  // console.log(formData);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setError(null);
@@ -25,7 +25,6 @@ export default function TaskForm({ onClose }) {
     }));
   };
   const handleFormSubmit = (e) => {
-    // console.log("hi");
     e.preventDefault();
     const isValid = checkFormField(formData); //check form data validity
     if (isValid === true) {
@@ -39,7 +38,7 @@ export default function TaskForm({ onClose }) {
     }
     setError(isValid);
   };
-  // onClick={onClose}
+
   return (
     <div className="modal" onClick={onClose}>
       <div className="modal-content modalAnimation">
