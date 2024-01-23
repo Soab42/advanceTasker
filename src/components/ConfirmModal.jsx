@@ -22,10 +22,12 @@ export default function ConfirmModal({ message, onConfirm, onCancel }) {
               src="https://i.pinimg.com/originals/cf/ce/2f/cfce2fa4cc0ccdc49cf1482c355a50b8.gif"
               alt="deleted"
             />
-            <div className="absolute animate-swipe">Deleted</div>
+            <div className="absolute font-thin animate-swipe text-rose-400">
+              Deleted
+            </div>
           </div>
         ) : (
-          <div className="modalAnimation bg-emerald-700/70 flex flex-col text-center h-96 py-20 justify-between rounded-md">
+          <div className="modalAnimation glass flex flex-col text-center py-20 justify-between gap-10 rounded-md">
             <p className="text-[3rem] text-white">{message}</p>
             <div className="flex justify-center items-center gap-[2rem] text-2xl">
               <button className="btn primary" onClick={handleConfirm}>

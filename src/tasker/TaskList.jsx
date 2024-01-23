@@ -42,8 +42,15 @@ export default function TaskList() {
   }
   if (filteredTasks.length === 0) {
     return (
-      <div className="w-full min-w-[100rem]  capitalize text-3xl text-rose-300">
-        Tasks List is Empty! Please Add New Task.
+      <div className="w-full capitalize text-3xl text-rose-300 px-96 py-10 flex flex-col justify-between items-center">
+        <img
+          src="https://cdn.dribbble.com/users/1753953/screenshots/3818675/media/b376f45b3edd274a18c6296df22854fb.gif"
+          alt="empty"
+          className="rounded-tr-[14rem] w-96 rounded-tl-[10rem] rotate-[10deg] rounded-bl-[10rem] -z-0"
+        />
+        <p className="z-20 font-thin bg-black/90 p-4 ring-1 shadow-lg shadow-pink-400 rounded-md">
+          Tasks List is Empty! Please Add New Task.
+        </p>
       </div>
     );
   }
