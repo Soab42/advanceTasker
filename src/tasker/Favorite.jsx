@@ -1,6 +1,16 @@
-export default function Favorite({ isFavorite }) {
+import { useTaskProvider } from "../context/Provider";
+
+export default function Favorite({ isFavorite, id }) {
+  const { dispatch } = useTaskProvider();
   return (
-    <button>
+    <button
+      onClick={() => {
+        dispatch({
+          type: "UPDATE_FAV",
+          payload: { isFavorite: !isFavorite, id },
+        });
+      }}
+    >
       {isFavorite ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"

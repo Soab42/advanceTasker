@@ -10,6 +10,21 @@
   .container {
     @apply px-4;
   }
+  .modal {
+    @apply fixed top-0 -left-5 w-screen h-screen z-50 bg-black/60 backdrop-blur-sm;
+  }
+  .modal-content {
+    @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[420px] sm:max-w-[600px] lg:max-w-[984px] p-4 max-h-[90vh] overflow-auto;
+  }
+  .btn {
+    @apply px-2 p-1 rounded-xl w-44 h-16;
+  }
+  .warning {
+    @apply bg-rose-400;
+  }
+  .primary {
+    @apply bg-sky-400;
+  }
 }
 
 option {
@@ -23,4 +38,51 @@ select {
   width: fit-content;
   text-align: center;
   padding: 2px;
+}
+
+.modalAnimation {
+  animation: grow 0.3s ease-in forwards;
+}
+
+@keyframes grow {
+  from {
+    opacity: 0;
+    scale: 0;
+    transform: translate3d(-100rem, 0, 0);
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+.animate-swipe {
+  animation: swipe 1.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+@keyframes swipe {
+  from {
+    transform: translateX(5rem);
+  }
+  to {
+    transform: translateX(30rem);
+  }
+}
+
+.animate-left {
+  animation: left 5s cubic-bezier(0.175, 0.885, 0.32, 1.275) backwards;
+}
+
+@keyframes left {
+  0% {
+    transform: translate(0rem);
+  }
+  10% {
+    transform: translate(25rem);
+  }
+  90% {
+    transform: translate(25rem);
+  }
+  100% {
+    transform: translate(0rem);
+  }
 }

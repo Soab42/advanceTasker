@@ -1,19 +1,20 @@
-import { useState } from "react";
+import { useTaskProvider } from "../context/Provider";
 
-const Priority = ({ value }) => {
+const Priority = ({ value, id }) => {
   // console.log(value);
-  const [selected, setSelected] = useState(value);
-  const handlePriorityChange = (e) => {
-    // Call the onChange prop to update the parent component's state
+  const { dispatch } = useTaskProvider();
 
-    console.log(e.target.value);
-    setSelected(e.target.value);
+  const handlePriorityChange = (e) => {
+    dispatch({
+      type: "UPDATE_PRIORITY",
+      payload: { id, priority: e.target.value },
+    });
   };
 
   return (
     <select
       className="bg-inherit"
-      value={selected}
+      value={value}
       onChange={handlePriorityChange}
     >
       <option value="high">High</option>

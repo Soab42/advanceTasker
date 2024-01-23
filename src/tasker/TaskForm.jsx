@@ -1,9 +1,21 @@
 import { useState } from "react";
 import { checkFormField } from "../utils/checkFormField";
 import closeIcon from "../assets/svg/close.svg";
+import { useTaskProvider, useUpdateProvider } from "../context/Provider";
+const defaultState = {
+  id: crypto.randomUUID().toString(),
+  isFavorite: false,
+  title: "",
+  tags: [],
+  description: "",
+  priority: "",
+};
 export default function TaskForm({ onClose }) {
-  const [formData, setFormData] = useState({});
+  const { update } = useUpdateProvider();
+  const { dispatch } = useTaskProvider();
+  const [formData, setFormData] = useState(update.data ?? defaultState);
   const [error, setError] = useState(null);
+  // console.log(formData);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setError(null);
@@ -13,31 +25,36 @@ export default function TaskForm({ onClose }) {
     }));
   };
   const handleFormSubmit = (e) => {
+    // console.log("hi");
     e.preventDefault();
     const isValid = checkFormField(formData); //check form data validity
     if (isValid === true) {
+      dispatch({
+        type: update.isEditing ? "UPDATE" : "ADD",
+        payload: update.isEditing
+          ? formData
+          : { ...formData, isFavorite: false },
+      });
       onClose();
     }
     setError(isValid);
   };
-
+  // onClick={onClose}
   return (
-    <div
-      className="fixed top-0 -left-5 w-screen h-screen z-50 bg-black/60 backdrop-blur-sm"
-      onClick={onClose}
-    >
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[420px] sm:max-w-[600px] lg:max-w-[984px] p-4 max-h-[90vh] overflow-auto">
+    <div className="modal" onClick={onClose}>
+      <div className="modal-content modalAnimation">
         <form
           className="mx-auto my-10 w-full max-w-[740px] rounded-xl border border-[#FEFBFB]/[36%] bg-[#191D26] p-9 max-md:px-4 lg:my-20 lg:p-11 relative"
           onClick={(e) => {
             e.stopPropagation();
           }}
+          onSubmit={handleFormSubmit}
         >
           <button onClick={onClose} className="absolute right-3 top-3">
             <img width="30rem" src={closeIcon} alt="close" />
           </button>
           <h2 className="mb-9 text-center text-2xl font-bold text-white lg:mb-11 lg:text-[28px]">
-            Add New Task
+            {update.isEditing ? "Update Task" : "Add New Task"}
           </h2>
 
           {/* <!-- inputs --> */}
@@ -51,6 +68,7 @@ export default function TaskForm({ onClose }) {
                 name="title"
                 id="title"
                 onChange={handleChange}
+                value={formData.title}
               />
             </div>
             {/* <!-- description --> */}
@@ -62,6 +80,7 @@ export default function TaskForm({ onClose }) {
                 name="description"
                 id="description"
                 onChange={handleChange}
+                value={formData.description}
               ></textarea>
             </div>
             {/* <!-- input group --> */}
@@ -76,6 +95,7 @@ export default function TaskForm({ onClose }) {
                   id="tags"
                   placeholder="React,Js,Python"
                   onChange={handleChange}
+                  value={formData.tags}
                 />
               </div>
               {/* <!-- priority --> */}
@@ -85,6 +105,7 @@ export default function TaskForm({ onClose }) {
                   className="block w-full cursor-pointer rounded-md bg-[#2D323F] px-3 py-2.5"
                   name="priority"
                   id="priority"
+                  value={formData.priority?.toLowerCase()}
                   onChange={handleChange}
                 >
                   <option value="">Select Priority</option>
@@ -99,7 +120,7 @@ export default function TaskForm({ onClose }) {
             <div className="mt-4 text-center bg-rose-400/20 p-2 rounded-md">
               Please fill
               <span className="mx-1">
-                {error.map((e) => (
+                {error?.map((e) => (
                   <span
                     key={e}
                     className="pr-1 bg-red-400 text-black/80 px-1 ml-1 capitalize"
@@ -116,9 +137,8 @@ export default function TaskForm({ onClose }) {
             <button
               type="submit"
               className="rounded bg-blue-600 px-4 py-2 text-white transition-all hover:opacity-80"
-              onClick={handleFormSubmit}
             >
-              Create new Task
+              {update.isEditing ? "Update Task" : "Create new Task"}
             </button>
           </div>
         </form>
