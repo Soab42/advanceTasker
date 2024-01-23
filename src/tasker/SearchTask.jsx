@@ -5,7 +5,6 @@ export default function SearchTask() {
 
   let timeId;
   const handleChange = (e) => {
-    setSearch(e.target.value);
     clearTimeout(timeId);
     timeId = setTimeout(() => {
       setSearch(e.target.value);
