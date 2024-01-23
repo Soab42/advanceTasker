@@ -43,7 +43,7 @@ export default function TaskList() {
   if (filteredTasks.length === 0) {
     return (
       <div className="w-full min-w-[100rem]  capitalize text-3xl text-rose-300">
-        Task is Empty! Please Add New Task.
+        Tasks List is Empty! Please Add New Task.
       </div>
     );
   }

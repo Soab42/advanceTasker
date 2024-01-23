@@ -11,6 +11,7 @@ export default function SearchTask() {
       setSearch(e.target.value);
     }, 500);
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setSearch(search);
