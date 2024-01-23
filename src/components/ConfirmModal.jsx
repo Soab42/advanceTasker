@@ -17,7 +17,7 @@ export default function ConfirmModal({ message, onConfirm, onCancel }) {
     <div className="modal">
       <div className="modal-content">
         {confirm ? (
-          <div className="modalAnimation  flex flex-col text-center py-20 justify-center text-[5rem] rounded-md h-96 relative">
+          <div className="modalAnimation  flex flex-col text-center py-20 justify-center text-[5rem] rounded-md h-96 relative overflow-hidden">
             <img
               src="https://i.pinimg.com/originals/cf/ce/2f/cfce2fa4cc0ccdc49cf1482c355a50b8.gif"
               alt="deleted"
