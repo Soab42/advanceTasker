@@ -8,18 +8,17 @@ import ConfirmModal from "../components/ConfirmModal";
 
 export default function Task({ task = {} }) {
   const [confirmModalShow, setConfirmModalShow] = useState(false);
-
+  const [isEditingOn, setIsEditingOn] = useState(false);
   const { dispatch } = useTaskProvider();
-  const {
-    update: { isEditing },
-    setUpdate,
-  } = useUpdateProvider();
+  const { setUpdate } = useUpdateProvider();
 
   const handleEdit = () => {
     setUpdate({ isEditing: true, data: task });
+    setIsEditingOn(true);
   };
   const handleUpdateModal = () => {
     setUpdate({ isEditing: false, data: null });
+    setIsEditingOn(false);
   };
   const handleDelete = () => {
     setConfirmModalShow(true);
@@ -60,7 +59,7 @@ export default function Task({ task = {} }) {
           <button className="text-red-500" onClick={handleDelete}>
             Delete
           </button>
-          {isEditing && <TaskForm onClose={handleUpdateModal} />}
+          {isEditingOn && <TaskForm onClose={handleUpdateModal} />}
           <button className="text-blue-500" onClick={handleEdit}>
             Edit
           </button>
