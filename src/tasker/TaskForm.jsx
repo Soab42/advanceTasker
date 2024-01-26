@@ -22,7 +22,7 @@ export default function TaskForm({ onClose }) {
     setError(null);
     setFormData((prev) => ({
       ...prev,
-      [name]: name === "tags" ? value.split(",") : value.trim(),
+      [name]: name === "tags" ? value.split(",") : value,
     }));
   };
   const handleFormSubmit = (e) => {
