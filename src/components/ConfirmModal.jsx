@@ -1,12 +1,13 @@
 import { useState } from "react";
 
+import Tick from "../assets/tick.gif";
 export default function ConfirmModal({ message, onConfirm, onCancel }) {
   const [confirm, setConfirm] = useState(false);
   const handleConfirm = () => {
     setConfirm(true);
     setTimeout(() => {
       onConfirm();
-    }, 3000);
+    }, 2000);
   };
 
   const handleCancel = () => {
@@ -17,14 +18,10 @@ export default function ConfirmModal({ message, onConfirm, onCancel }) {
     <div className="modal">
       <div className="modal-content">
         {confirm ? (
-          <div className="modalAnimation  flex flex-col text-center py-20 justify-center text-[5rem] rounded-md h-96 relative overflow-hidden">
-            <img
-              src="https://i.pinimg.com/originals/cf/ce/2f/cfce2fa4cc0ccdc49cf1482c355a50b8.gif"
-              alt="deleted"
-            />
-            <div className="absolute font-thin animate-swipe text-rose-400">
-              Deleted
-            </div>
+          <div className="flex text-center py-20 justify-center items-center text-[5rem] rounded-md h-96 relative overflow-hidden w-full bg-white">
+            <img src={Tick} alt="deleted" width={"90rem"} />
+
+            <div className="font-thin text-rose-400">Deleted</div>
           </div>
         ) : (
           <div className="modalAnimation glass flex flex-col text-center py-20 justify-between gap-10 rounded-md">

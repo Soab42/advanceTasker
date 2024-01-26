@@ -67,7 +67,7 @@ select {
     transform: translateX(5rem);
   }
   to {
-    transform: translateX(28rem);
+    transform: translateX(10rem);
   }
 }
 
