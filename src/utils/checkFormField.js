@@ -6,11 +6,13 @@ export function checkFormField(formData) {
     const fieldValue = formData[field];
 
     // Check if the field is missing or an array not filled with non-empty strings
-
     if (
       !fieldValue ||
+      (typeof fieldValue === "string" && fieldValue.trim() === "") ||
       (Array.isArray(fieldValue) &&
-        fieldValue.every((item) => item.trim() === ""))
+        fieldValue.every(
+          (item) => typeof item === "string" && item.trim() === ""
+        ))
     ) {
       missingFields.push(field);
     }
