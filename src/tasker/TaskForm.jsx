@@ -2,6 +2,7 @@ import { useState } from "react";
 import { checkFormField } from "../utils/checkFormField";
 import closeIcon from "../assets/svg/close.svg";
 import { useTaskProvider, useUpdateProvider } from "../context/Provider";
+import { toast } from "react-toastify";
 const defaultState = {
   id: crypto.randomUUID().toString(),
   isFavorite: false,
@@ -21,7 +22,7 @@ export default function TaskForm({ onClose }) {
     setError(null);
     setFormData((prev) => ({
       ...prev,
-      [name]: name === "tags" ? value.split(",") : value,
+      [name]: name === "tags" ? value.split(",") : value.trim(),
     }));
   };
   const handleFormSubmit = (e) => {
@@ -34,6 +35,11 @@ export default function TaskForm({ onClose }) {
           ? formData
           : { ...formData, isFavorite: false },
       });
+      toast(
+        `${formData.title} task is ${
+          update.isEditing ? "Updated" : "Added"
+        } Successfully!`
+      );
       onClose();
     }
     setError(isValid);
@@ -115,14 +121,19 @@ export default function TaskForm({ onClose }) {
               </div>
             </div>
           </div>
-          {error && (
-            <div className="mt-4 text-center bg-rose-400/20 p-2 rounded-md">
+          {
+            <div
+              className={`mt-4 text-center bg-rose-400/20 p-2 rounded-md ${
+                !error ? "opacity-0" : "opacity-100"
+              }`}
+            >
               Please fill
               <span className="mx-1">
                 {error?.map((e) => (
                   <span
                     key={e}
-                    className="pr-1 bg-red-400 text-black/80 px-1 ml-1 capitalize"
+                    style={{ textTransform: "capitalize" }}
+                    className="pr-1 bg-red-400 text-black/80 px-1 ml-1"
                   >
                     {e}
                   </span>
@@ -130,7 +141,7 @@ export default function TaskForm({ onClose }) {
               </span>
               field .
             </div>
-          )}
+          }
           {/* <!-- inputs ends --> */}
           <div className="mt-12 flex justify-center lg:mt-20">
             <button

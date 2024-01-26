@@ -1,10 +1,12 @@
+import { toast } from "react-toastify";
 import { useTaskProvider } from "../context/Provider";
-
 export default function Favorite({ isFavorite, id }) {
   const { dispatch } = useTaskProvider();
+
   return (
     <button
       onClick={() => {
+        toast(`Task ${isFavorite ? "removed from" : "added to"} Favorite`);
         dispatch({
           type: "UPDATE_FAV",
           payload: { isFavorite: !isFavorite, id },

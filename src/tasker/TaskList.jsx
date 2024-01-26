@@ -48,8 +48,10 @@ export default function TaskList() {
           alt="empty"
           className="rounded-tr-[14rem] w-96 rounded-tl-[10rem] rotate-[10deg] rounded-bl-[10rem] -z-0"
         />
-        <p className="z-20 font-thin bg-black/90 p-4 ring-1 shadow-lg shadow-pink-400 rounded-md">
-          Tasks List is Empty! Please Add New Task.
+        <p className="z-20 font-thin bg-black/90 p-4 ring-1 shadow-lg shadow-pink-400 rounded-md min-w-96 text-center">
+          {tasks.length > 0
+            ? "No Task Found !"
+            : "Tasks List is Empty! Please Add New Task."}
         </p>
       </div>
     );

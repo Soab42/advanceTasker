@@ -18,10 +18,12 @@ export default function ConfirmModal({ message, onConfirm, onCancel }) {
     <div className="modal">
       <div className="modal-content">
         {confirm ? (
-          <div className="flex text-center py-20 justify-center items-center text-[5rem] rounded-md h-96 relative overflow-hidden w-full bg-white">
+          <div className="flex text-center py-20 justify-center items-center text-[3rem] rounded-md h-96 relative overflow-hidden w-full bg-white">
             <img src={Tick} alt="deleted" width={"90rem"} />
 
-            <div className="font-thin text-rose-400">Deleted</div>
+            <div className="font-thin animate-swipe text-green-400">
+              Deleted Successfully!
+            </div>
           </div>
         ) : (
           <div className="modalAnimation glass flex flex-col text-center py-20 justify-between gap-10 rounded-md">

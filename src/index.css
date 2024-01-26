@@ -64,10 +64,10 @@ select {
 }
 @keyframes swipe {
   from {
-    transform: translateX(5rem);
+    transform: translateX(1rem);
   }
   to {
-    transform: translateX(10rem);
+    transform: translateX(2rem);
   }
 }
 
