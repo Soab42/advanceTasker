@@ -18,7 +18,7 @@ export default function TaskForm({ onClose }) {
     }
   );
   const [error, setError] = useState(null);
-  console.log(formData);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setError(null);
@@ -37,7 +37,7 @@ export default function TaskForm({ onClose }) {
           ? formData
           : { ...formData, isFavorite: false },
       });
-      toast(
+      toast.success(
         `${formData.title} task is ${
           update.isEditing ? "Updated" : "Added"
         } Successfully!`

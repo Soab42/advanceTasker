@@ -11,7 +11,7 @@ function App() {
       <HeroSection />
       <MainSection />
       <Footer />
-      <ToastContainer />
+      <ToastContainer theme="dark" />
     </div>
   );
 }
