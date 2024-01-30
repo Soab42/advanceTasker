@@ -3,20 +3,22 @@ import { checkFormField } from "../utils/checkFormField";
 import closeIcon from "../assets/svg/close.svg";
 import { useTaskProvider, useUpdateProvider } from "../context/Provider";
 import { toast } from "react-toastify";
-const defaultState = {
-  id: crypto.randomUUID().toString(),
-  isFavorite: false,
-  title: "",
-  tags: [],
-  description: "",
-  priority: "",
-};
+
 export default function TaskForm({ onClose }) {
   const { update } = useUpdateProvider();
   const { dispatch } = useTaskProvider();
-  const [formData, setFormData] = useState(update.data ?? defaultState);
+  const [formData, setFormData] = useState(
+    update.data ?? {
+      id: crypto.randomUUID().toString(),
+      isFavorite: false,
+      title: "",
+      tags: [],
+      description: "",
+      priority: "",
+    }
+  );
   const [error, setError] = useState(null);
-
+  console.log(formData);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setError(null);
